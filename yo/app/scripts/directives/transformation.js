@@ -1090,10 +1090,11 @@ angular.module('dmpApp')
             updateInputOutputMappings();
 
             updateTabTitle();
-
+/*
             if ($scope.$$phase !== '$digest') {
                 $scope.$digest();
             }
+            */
         });
 
         //** Start of sending transformation to server

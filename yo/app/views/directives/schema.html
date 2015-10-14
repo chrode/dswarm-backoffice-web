@@ -27,6 +27,18 @@
 
   </div>
 
+  <div class="col-md-2 col-md-offset-5">
+
+      <div class="mappings" style="vertical-align: middle;">
+
+          <div ng-repeat="mapping in project.mappings">
+              <h1 ng-click="activateMapping(mapping)">{{mapping.name}}</h1>
+          </div>
+
+      </div>
+
+  </div>
+
   <div class="col-md-4 col-md-offset-8">
 
       <h3>Target</h3>

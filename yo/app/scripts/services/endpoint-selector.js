@@ -39,14 +39,14 @@ angular.module('dmpApp')
         }
 
         function deSelect(connection) {
-            setColor(connection, 'black');
+            //setColor(connection, 'black');
 
             angular.forEach(connection.additionalInput, function(additionalInputEntry) {
-                setColor(additionalInputEntry.connection, 'black');
+                //setColor(additionalInputEntry.connection, 'black');
             });
 
             endpointLabel.deactivate(connection);
-            connection.getConnector().removeClass('mapping-active');
+            //connection.getConnector().removeClass('mapping-active');
         }
 
         function deSelectAll() {
@@ -58,14 +58,14 @@ angular.module('dmpApp')
         }
 
         function select(connection) {
-            setColor(connection, 'red');
+            /*setColor(connection, 'red');
 
             angular.forEach(connection.additionalInput, function(additionalInputEntry) {
                 setColor(additionalInputEntry.connection, 'red');
-            });
+            });*/
 
             endpointLabel.activate(connection);
-            connection.getConnector().addClass('mapping-active');
+            /*connection.getConnector().addClass('mapping-active');*/
         }
 
         function isTargetInPool(component) {
@@ -95,7 +95,6 @@ angular.module('dmpApp')
         }
 
         function activate(connection) {
-
             if (endpointLabel.get(connection) === null) {
                 return null;
             }

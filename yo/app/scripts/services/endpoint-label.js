@@ -23,27 +23,28 @@ angular.module('dmpApp')
         }
 
         function get(connection) {
-            return connection.getLabel();
+            //return connection.getLabel();
+            return 'label';
         }
 
         function set(connection, label) {
-            connection.setLabel(label);
+            //connection.setLabel(label);
             activate(connection);
         }
 
         function activate(connection) {
-            var labelOverlay = connection.getLabelOverlay();
+            /*var labelOverlay = connection.getLabelOverlay();
             if (labelOverlay) {
                 labelOverlay.addClass('mapping-label');
                 labelOverlay.addClass('mapping-active');
-            }
+            }*/
         }
 
         function deactivate(connection) {
-            var labelOverlay = connection.getLabelOverlay();
+            /*var labelOverlay = connection.getLabelOverlay();
             if (labelOverlay) {
                 labelOverlay.removeClass('mapping-active');
-            }
+            }*/
 
         }
 
@@ -83,7 +84,7 @@ angular.module('dmpApp')
                     };
 
                     $scope.showExtra = function() {
-                        $('#relabel-extra').slideToggle();
+                        //$('#relabel-extra').slideToggle();
                     };
 
                     $scope.hasExtra = function() {

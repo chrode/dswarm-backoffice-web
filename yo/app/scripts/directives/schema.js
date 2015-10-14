@@ -49,6 +49,27 @@ angular.module('dmpApp')
         $scope.chevron = function(source) {
             return 'glyphicon-chevron-' + (source.collapsed ? 'right' : 'down');
         };
+
+        /**
+         * Activates a mapping
+         * @param mapping
+         */
+        $scope.activateMapping = function(mapping) {
+            console.log("mapping", mapping);
+
+            PubSub.broadcast('connectionSelected', {
+                connection_id: mapping._$connection_id,
+                name: mapping.name,
+                inputAttributePath: mapping.input_attribute_paths,
+                outputAttributePath: mapping.output_attribute_path,
+                mapping_id: mapping.uuid,
+                additionalInput: [],
+                click: true
+            });
+
+        };
+
+
     })
     .directive('schema', function() {
         return {

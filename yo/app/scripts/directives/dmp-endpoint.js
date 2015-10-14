@@ -102,6 +102,8 @@ angular.module('dmpApp')
             var active = parameters.active;
             var label = parameters.label;
 
+            console.log("connectComponent", parameters);
+
             var connectionDefer = $q.defer();
 
             function handleAdditionalKeyDefs(data) {
@@ -162,10 +164,12 @@ angular.module('dmpApp')
 
                 var sourceEndpoint,
                     targetEndpoint,
-                    newConnection,
+                    newConnection = {},
                     newLabel = null,
                     newKeyDefs = null,
                     additionalKeyDefs = { keyDefs : [], component : {} };
+
+                console.log("continuation", data);
 
                 if (angular.isString(data)) {
                     newLabel = data;
@@ -179,14 +183,19 @@ angular.module('dmpApp')
                 }
 
                 //create endpoint
-                sourceEndpoint = jsP.addEndpoint(elements[sourceId], sourceOptions);
-                targetEndpoint = jsP.addEndpoint(elements[targetId], targetOptions);
+                //sourceEndpoint = jsP.addEndpoint(elements[sourceId], sourceOptions);
+                //targetEndpoint = jsP.addEndpoint(elements[targetId], targetOptions);
 
                 //link it
-                newConnection = jsP.connect(sourceEndpoint, targetEndpoint);
+                //newConnection = jsP.connect(sourceEndpoint, targetEndpoint);
 
-                jsP.on('click', onClick);
-                jsP.on('dblclick', onDoubleClick);
+                newConnection = {
+                    source: elements[sourceId],
+                    target: elements[targetId]
+                };
+
+                //jsP.on('click', onClick);
+                //jsP.on('dblclick', onDoubleClick);
 
                 if (component.mappingId) {
                     newConnection.mappingId = component.mappingId;
@@ -270,7 +279,7 @@ angular.module('dmpApp')
                 newInputComponent.iapId = GUID.uuid4();
             }
 
-            newInputComponent.connection.setLabel(' ');
+            //newInputComponent.connection.setLabel(' ');
             var labelOverlay = newInputComponent.connection.getLabelOverlay();
             labelOverlay.addClass('mapping-label');
 
@@ -283,10 +292,14 @@ angular.module('dmpApp')
         }
 
         function activate(connection, dontFire, click) {
+
             var conn = endpointSelector.activate(connection);
+
+            console.log("activate", conn);
+
             if (conn && !dontFire) {
 
-                var name = conn.getLabel(),
+                var name = 'label',
                     source = getData(conn.source),
                     target = getData(conn.target);
 
@@ -473,6 +486,7 @@ angular.module('dmpApp')
 
 
                             }
+
                         });
                     });
 
@@ -488,12 +502,12 @@ angular.module('dmpApp')
         function onSchemaCanvasUpdated() {
 
             //$rootScope.$digest();
-            jsP.repaintEverything();
+            //jsP.repaintEverything();
 
             // Second run needed because jsPlumb
             // sometimes not recognizing elements
             // to rerender *sigh*
-            jsP.repaintEverything();
+            //jsP.repaintEverything();
 
         }
 
