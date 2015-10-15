@@ -69,6 +69,12 @@ angular.module('dmpApp')
 
         };
 
+        $scope.hightlightMapping = function(mapping) {
+
+            console.log("mapping", mapping);
+
+        };
+
 
     })
     .directive('schema', function() {

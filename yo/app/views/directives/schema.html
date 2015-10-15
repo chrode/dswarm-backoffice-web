@@ -32,7 +32,7 @@
       <div class="mappings" style="vertical-align: middle;">
 
           <div ng-repeat="mapping in project.mappings">
-              <h1 ng-click="activateMapping(mapping)">{{mapping.name}}</h1>
+              <h1 ng-click="activateMapping(mapping)" ng-mouseover="hightlightMapping(mapping)">{{mapping.name}}</h1>
           </div>
 
       </div>
