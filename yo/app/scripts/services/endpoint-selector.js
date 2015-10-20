@@ -23,6 +23,8 @@ angular.module('dmpApp')
 
         function findInPool(selector) {
 
+            console.log("pool", pool);
+
             return loDash.find(pool, selector);
         }
 
@@ -70,6 +72,8 @@ angular.module('dmpApp')
 
         function isTargetInPool(component) {
 
+            console.log("getTargetFromPool", getTargetFromPool(component.targetId));
+
             return !!getTargetFromPool(component.targetId);
         }
 
@@ -105,6 +109,9 @@ angular.module('dmpApp')
             } else {
 
                 if (pool.indexOf(connection) === -1) {
+
+                    console.log("add pool", connection);
+
                     pool.push(connection);
                 }
 
@@ -129,6 +136,8 @@ angular.module('dmpApp')
                 sourceOptions: sourceScope.jspSourceOptions,
                 targetOptions: targetScope.jspTargetOptions
             };
+
+            console.log("isTargetInPool", component, pool);
 
             if (isTargetInPool(component)) {
 

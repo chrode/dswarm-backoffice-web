@@ -974,6 +974,8 @@ angular.module('dmpApp')
 
         PubSub.subscribe($scope, 'connectionSelected', function(data) {
 
+            console.log("connectionSelected", data);
+
             hideTransformationPlumbs();
 
             if (activeComponentId !== data.mapping_id) {

@@ -27,6 +27,8 @@ angular.module('dmpApp')
 
         function selectSource(scope) {
 
+            console.log("selectSource", scope);
+
             if (sourceScope && sourceScope.$id === scope.$id && sourceScope.isSelected) {
                 // clicked again, deselect
                 sourceScope.isSelected = false;
@@ -61,6 +63,9 @@ angular.module('dmpApp')
             };
 
             var inputContentSchema = scope.projectHasContentSchemaForFilterShortCut();
+
+            console.log("selecttarget", inputContentSchema, component);
+
             if (inputContentSchema) {
                 var iap = getData(elements[sourceScope.guid], sourceScope).path;
 
@@ -191,7 +196,10 @@ angular.module('dmpApp')
 
                 newConnection = {
                     source: elements[sourceId],
-                    target: elements[targetId]
+                    target: elements[targetId],
+                    label: newLabel,
+                    sourceId: sourceId,
+                    targetId: targetId
                 };
 
                 //jsP.on('click', onClick);
@@ -263,6 +271,8 @@ angular.module('dmpApp')
                 label: false
             });
 
+            console.log("mergeComponent", connectParams);
+
             connectComponent(connectParams).then(function(newConnection) {
 
                 endpointSelector.removeFromPool(newConnection);
@@ -280,8 +290,8 @@ angular.module('dmpApp')
             }
 
             //newInputComponent.connection.setLabel(' ');
-            var labelOverlay = newInputComponent.connection.getLabelOverlay();
-            labelOverlay.addClass('mapping-label');
+            //var labelOverlay = newInputComponent.connection.getLabelOverlay();
+            //labelOverlay.addClass('mapping-label');
 
             if (!baseComponent.additionalInput) {
                 baseComponent.additionalInput = [];
@@ -295,11 +305,9 @@ angular.module('dmpApp')
 
             var conn = endpointSelector.activate(connection);
 
-            console.log("activate", conn);
-
             if (conn && !dontFire) {
 
-                var name = 'label',
+                var name = conn.label,
                     source = getData(conn.source),
                     target = getData(conn.target);
 
@@ -471,7 +479,7 @@ angular.module('dmpApp')
                                 connectComponent({component: component, sourceId: component.sourceId, targetId: component.targetId, sourceOptions: inputScope.opts, targetOptions: outputScope.opts, active: true, label: mapping.name});
                             } else {
 
-                                var connectParams = {component: component, sourceId: component.sourceId, targetId: component.targetId, sourceOptions: inputScope.opts, targetOptions: outputScope.opts, active: false, label: false};
+                                var connectParams = {component: component, sourceId: component.sourceId, targetId: component.targetId, sourceOptions: inputScope.opts, targetOptions: outputScope.opts, active: false, label: mapping.name};
 
                                 connectComponent(connectParams).then(function(newConnection) {
 
